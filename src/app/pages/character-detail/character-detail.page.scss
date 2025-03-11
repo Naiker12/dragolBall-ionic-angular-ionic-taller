@@ -1,0 +1,38 @@
+
+.character-card {
+    width: 90%;
+    margin: 20px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    text-align: center;
+  }
+  
+  .character-avatar {
+    width: 200px;
+    height: 500px;
+    border-radius: 5%;
+    display: block;
+    margin: 5px auto;
+    object-fit: contain;
+  }
+  
+  .character-name {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-top: 10px;
+    color: white;
+  }
+  
+  .character-status {
+    font-size: 1.2em;
+    color: gold;
+  }
+  
+  .glass-content {
+    padding: 20px;
+    text-align: center;
+  }
+  
