@@ -2,93 +2,108 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { DragonballService } from 'src/app/services/dragonball.service';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-  standalone : false 
+  standalone: false,
 })
-
-
 export class HomePage implements OnInit {
-
   charatacters: any[] = [];
   params = {} as any;
+  isSearching = false;
 
-  constructor(
-    private dragonballSvs: DragonballService,
-  ) { }
+  constructor(private dragonballSvs: DragonballService) {}
 
   ngOnInit() {
-    this.params.page = 0;
+    this.params.page = 1;
     this.getCharacters();
   }
 
   getCharacters(event?: any) {
-    this.params.page += 1;
+    if (!this.isSearching) {
+      this.params.page += 1;
+    }
 
     this.dragonballSvs.getCharacters(this.params).subscribe({
       next: (res: any) => {
-        this.charatacters.push(...res.items);
-        console.log(this.charatacters);
+        let characters = [];
+
+        if (Array.isArray(res)) {
+          characters = res;
+        } else if (res && res.items && Array.isArray(res.items)) {
+          characters = res.items;
+        } else if (res && res.data && Array.isArray(res.data)) {
+          characters = res.data;
+        } else {
+          characters = [];
+        }
+
+        if (this.isSearching || this.params.page === 1) {
+          this.charatacters = characters;
+        } else {
+          this.charatacters.push(...characters);
+        }
 
         if (event) event.target.complete();
       },
-      error: (err : any ) => {
+      error: (err: any) => {
         if (event) event.target.complete();
-      }
-    })
-    
+      },
+    });
   }
 
-  //======== Byscar por nombre de personaje =========
+  // ======== FUNCIÓN DE BÚSQUEDA ========
   searchCharacters() {
-    const searchTerm = this.params.name?.trim().toLowerCase();
-    console.log('Término de búsqueda:', searchTerm); 
-  
+    const searchTerm = this.params.name?.trim();
     if (!searchTerm) {
-      this.resetCharacterList(); 
+      this.clearSearch();
       return;
     }
-  
-    this.dragonballSvs.getCharacters(this.params).subscribe({
+
+    this.isSearching = true;
+    this.charatacters = [];
+
+    const searchParams = { name: searchTerm };
+
+    this.dragonballSvs.getCharacters(searchParams).subscribe({
       next: (res: any) => {
-        console.log('Personajes obtenidos:', res); 
-  
-        if (!res || !res.items) { 
-          console.warn('⚠️ Advertencia: res.items está undefined');
-          this.charatacters = [];
-          return;
+        let searchResults = [];
+
+        if (Array.isArray(res)) {
+          searchResults = res;
+        } else if (res && res.items) {
+          searchResults = res.items;
+        } else if (res && res.data) {
+          searchResults = res.data;
+        } else {
+          searchResults = [];
         }
-  
-        this.charatacters = res.items.filter((character: any) =>
-          character.name?.toLowerCase().includes(searchTerm)
-        );
-  
-        console.log('Personajes filtrados:', this.charatacters);
+
+        this.charatacters = searchResults;
+
+        if (this.charatacters.length === 0) {
+        }
       },
       error: (err: any) => {
-        console.error('Error al buscar personajes:', err);
         this.charatacters = [];
-      }
-    });
-  }
-  
-  
-  // Función para restablecer la lista original
-  resetCharacterList() {
-    this.dragonballSvs.getCharacters(this.params).subscribe({
-      next: (res: any) => {
-        this.charatacters = res.items;
       },
-      error: (err: any) => {
-        console.error('Error al obtener la lista de personajes:', err);
-      }
     });
   }
-  
-  
+
+  clearSearch() {
+    this.params.name = '';
+    this.isSearching = false;
+    this.params.page = 0;
+    this.charatacters = [];
+    this.getCharacters();
+  }
+
+  loadMoreCharacters(event: any) {
+    if (this.isSearching) {
+      event.target.complete();
+      return;
+    }
+    this.getCharacters(event);
+  }
 }
-
-
