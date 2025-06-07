@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base-href /dragolBall-ionic-angular-ionic-taller/",
+    "build": "ng build --output-path=www --base-href /dragolBall-ionic-angular-ionic-taller/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
