@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://naiker12.io/dragolBall-ionic-angular-ionic-taller/",
+
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
