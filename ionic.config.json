@@ -1,7 +1,0 @@
-{
-  "name": "dragolBall-ionic",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
