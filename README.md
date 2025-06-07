@@ -56,4 +56,10 @@ Ionic +  Angular.
 Para más información, contáctanos en: gomeznaieker@gmail.com
 
 # Intro Page
+![Captura de pantalla 2025-06-07 123601](https://github.com/user-attachments/assets/e4352a76-e139-4c52-a8de-7d9c8aad9d29)
+![Captura de pantalla 2025-06-07 123551](https://github.com/user-attachments/assets/9ec737a0-b65f-49b9-88f3-bcde50f1a20c)
+![Captura de pantalla 2025-06-07 123531](https://github.com/user-attachments/assets/4ed65134-7449-424f-a27d-bc0472802e9d)
+![Captura de pantalla 2025-06-07 122447](https://github.com/user-attachments/assets/1bc2ab59-3192-4eb2-a475-f84d6d664a81)
+![Captura de pantalla 2025-06-07 122431](https://github.com/user-attachments/assets/5a1afb1c-39db-4337-acb2-ae89945669c4)
+![Captura de pantalla 2025-06-07 122501](https://github.com/user-attachments/assets/fa7059da-1696-466b-91f1-67873dec1551)
 
