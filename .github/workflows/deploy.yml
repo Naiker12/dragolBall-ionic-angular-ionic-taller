@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and Deploy to GitHub Pages
 
 on:
   push:
@@ -7,20 +7,25 @@ on:
 
 jobs:
   build-and-deploy:
-   runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-   steps:
-     - name: Checkout code
-       uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Install packages
-      run:  npm install
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-    - name: Bundle
-      run:  npm run build
+      - name: Install dependencies
+        run: npm install
 
-    - name: Deploy to GitHub Pages
-      uses: JasonEtco/upload-pages-artifact@v4
-      with:
-        Branch: main
-        folder: dist
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: main
+          folder: www

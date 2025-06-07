@@ -2,11 +2,11 @@
   "name": "dragolBall-ionic",
   "version": "0.0.1",
   "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "homepage": "https://tu-usuario.github.io/dragolBall-ionic-angular-ionic-taller/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --base==/dragolBall-ionic-angular-ionic-taller/",
+    "build": "ng build --base-href /dragolBall-ionic-angular-ionic-taller/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
